@@ -4,8 +4,16 @@ on:
   pull_request:
     types: [opened, synchronize]
 
+permissions:
+  contents: read
+
 jobs:
   compressed-size:
+    permissions:
+      checks: write  # for preactjs/compressed-size-action to create and update the checks
+      contents: read  # for actions/checkout to fetch code
+      issues: write  # for preactjs/compressed-size-action to create comments
+      pull-requests: write  # for preactjs/compressed-size-action to write a PR review
     runs-on: ubuntu-latest
     env:
       CI_JOB_NUMBER: 1
